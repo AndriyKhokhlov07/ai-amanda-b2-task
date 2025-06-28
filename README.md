@@ -1,7 +1,7 @@
 # Alondra Espacial & Amanda B2
 
 ## Description
-This project is a visually engaging, dynamic web homepage designed to showcase the expertise and experience of Alondra Espacial and Amanda B2. It features compelling messaging that emphasizes a decade of field experience and strategic innovation.
+This project is a visually engaging, dynamic web homepage designed to showcase the expertise and experience of Alondra Espacial and Amanda B2. It combines storytelling with immersive design to demonstrate a decade of field experience and strategic innovation.
 
 ### Key Features
 - **Animated Title:** A glowing, animated welcome message that draws visitors into the site.
