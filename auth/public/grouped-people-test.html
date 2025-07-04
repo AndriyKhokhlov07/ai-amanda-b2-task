@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grouped People Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    textarea {
+      width: 600px;
+      height: 180px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1em;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Grouped People API Test</h1>
+  <p>Paste JSON array of people below:</p>
+  <textarea id="jsonInput">[
+  { "no": 1, "name": "Alden", "age": 24, "birthday": "1999.12.12" },
+  { "no": 2, "name": "Briony", "age": 32, "birthday": "1990.05.10" },
+  { "no": 3, "name": "Cedric", "age": 28, "birthday": "1995.08.20" }
+]</textarea><br><br>
+
+  <button onclick="send()">🔄 Send Request</button>
+
+  <h3>📦 Response:</h3>
+  <pre id="result"></pre>
+
+  <script>
+    function send() {
+      const raw = document.getElementById("jsonInput").value;
+      try {
+        const parsed = JSON.parse(raw);
+        fetch("/api/v1/grouped-people", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(parsed),
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('✅ API response:', data);
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById("result").textContent = "❌ Error: " + err.message;
+        });
+      } catch (e) {
+        document.getElementById("result").textContent = "❌ Invalid JSON";
+      }
+    }
+  </script>
+</body>
+</html>

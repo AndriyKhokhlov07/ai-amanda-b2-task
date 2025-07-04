@@ -11,7 +11,11 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config({ path: 'backend/config/config.env' });
 }
 
+const cors = require('cors');
+app.use(cors());
+
 app.use(express.json());
+app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
@@ -20,11 +24,17 @@ const user = require('./routes/userRoute');
 const product = require('./routes/productRoute');
 const order = require('./routes/orderRoute');
 const payment = require('./routes/paymentRoute');
+const groupRoute = require('./routes/groupRoute');
+
 
 app.use('/api/v1', user);
 app.use('/api/v1', product);
 app.use('/api/v1', order);
+app.use('/api/v1', groupRoute);
 app.use('/api/v1', payment);
+
+
+
 
 // deployment
 __dirname = path.resolve();
@@ -36,7 +46,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 } else {
     app.get('/', (req, res) => {
-        res.send('Server is Running! 🚀');
+        res.send('Server is Running!');
     });
 }
 
